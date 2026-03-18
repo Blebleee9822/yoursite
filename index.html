@@ -402,26 +402,30 @@
         closeModal.addEventListener('click', () => emailModal.classList.add('hidden'));
 
         // Handle Choice Buttons
+        // Optimized for mobile by ensuring line breaks use %0D%0A which is the standard for mailto
         document.getElementById('btn-mailto').addEventListener('click', () => {
             const subject = encodeURIComponent(`Project Inquiry: ${currentEmailData.package} from ${currentEmailData.name}`);
             const body = encodeURIComponent(
-                `Hello Jillian,\n\n` +
-                `You have a new project inquiry from your website.\n\n` +
-                `Name: ${currentEmailData.name}\n` +
-                `Email: ${currentEmailData.email}\n` +
-                `Package: ${currentEmailData.package}\n\n` +
-                `Message:\n${currentEmailData.message}\n\n` +
-                `-----------------------------\n` +
+                `Hello Jillian,\r\n\r\n` +
+                `You have a new project inquiry from your website.\r\n\r\n` +
+                `Name: ${currentEmailData.name}\r\n` +
+                `Email: ${currentEmailData.email}\r\n` +
+                `Package: ${currentEmailData.package}\r\n\r\n` +
+                `Message:\r\n${currentEmailData.message}\r\n\r\n` +
+                `-----------------------------\r\n` +
                 `Sent via DevSource Website.`
             );
-            window.location.href = `mailto:${currentEmailData.recipient}?subject=${subject}&body=${body}`;
+            
+            // On mobile, direct assignment is often more reliable than hidden link click in some OS/browser combos
+            const mailtoUrl = `mailto:${currentEmailData.recipient}?subject=${subject}&body=${body}`;
+            window.location.assign(mailtoUrl);
             emailModal.classList.add('hidden');
         });
 
         document.getElementById('btn-gmail').addEventListener('click', () => {
             const subject = encodeURIComponent(`Project Inquiry: ${currentEmailData.package} from ${currentEmailData.name}`);
             const body = encodeURIComponent(
-                `Hello Jillian,\n\nName: ${currentEmailData.name}\nEmail: ${currentEmailData.email}\nPackage: ${currentEmailData.package}\n\nMessage:\n${currentEmailData.message}`
+                `Hello Jillian,\r\n\r\nName: ${currentEmailData.name}\r\nEmail: ${currentEmailData.email}\r\nPackage: ${currentEmailData.package}\r\n\r\nMessage:\r\n${currentEmailData.message}`
             );
             window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${currentEmailData.recipient}&su=${subject}&body=${body}`, '_blank');
             emailModal.classList.add('hidden');
@@ -430,7 +434,7 @@
         document.getElementById('btn-outlook').addEventListener('click', () => {
             const subject = encodeURIComponent(`Project Inquiry: ${currentEmailData.package} from ${currentEmailData.name}`);
             const body = encodeURIComponent(
-                `Hello Jillian,\n\nName: ${currentEmailData.name}\nEmail: ${currentEmailData.email}\nPackage: ${currentEmailData.package}\n\nMessage:\n${currentEmailData.message}`
+                `Hello Jillian,\r\n\r\nName: ${currentEmailData.name}\r\nEmail: ${currentEmailData.email}\r\nPackage: ${currentEmailData.package}\r\n\r\nMessage:\r\n${currentEmailData.message}`
             );
             window.open(`https://outlook.office.com/mail/deeplink/compose?to=${currentEmailData.recipient}&subject=${subject}&body=${body}`, '_blank');
             emailModal.classList.add('hidden');
