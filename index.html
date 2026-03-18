@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevOps & Web Solutions | Expert Services</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .skill-pill {
+            border: 1.5px solid #000;
+            border-radius: 9999px;
+            padding: 0.5rem 1.5rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            font-size: 0.875rem;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            display: inline-block;
+            margin: 0.5rem;
+        }
+        .skill-pill:hover {
+            background-color: #000;
+            color: #fff;
+            transform: translateY(-2px);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+        }
+        .pricing-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+        }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex items-center gap-2">
+                    <div class="w-8 h-8 bg-black rounded-lg flex items-center justify-center">
+                        <i data-lucide="code-2" class="text-white w-5 h-5"></i>
+                    </div>
+                    <span class="font-bold text-xl tracking-tight">DEVSOURCE</span>
+                </div>
+                <div class="hidden md:flex space-x-8 font-medium text-sm uppercase tracking-wider">
+                    <a href="#home" class="hover:text-blue-600 transition">Home</a>
+                    <a href="#services" class="hover:text-blue-600 transition">Services</a>
+                    <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
+                    <a href="#contact" class="px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition">Contact Us</a>
+                </div>
+                <button class="md:hidden" id="mobile-menu-btn">
+                    <i data-lucide="menu"></i>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-4">
+            <a href="#home" class="block font-medium">Home</a>
+            <a href="#services" class="block font-medium">Services</a>
+            <a href="#pricing" class="block font-medium">Pricing</a>
+            <a href="#contact" class="block font-medium text-blue-600">Contact Us</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-32 pb-20 px-4 gradient-bg">
+        <div class="max-w-7xl mx-auto text-center">
+            <h1 class="text-5xl md:text-7xl font-bold tracking-tighter mb-6">
+                Full-Stack Solutions.<br/><span class="text-gray-500">Engineered for Growth.</span>
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-10">
+                From core web development to complex system migrations, we provide the technical expertise to scale your digital presence.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="#services" class="px-8 py-4 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition shadow-lg">View Our Expertise</a>
+                <a href="#pricing" class="px-8 py-4 border border-black rounded-full font-semibold hover:bg-gray-50 transition">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services / Skills Section -->
+    <section id="services" class="py-24 px-4 bg-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Core Services & Expertise</h2>
+                <p class="text-gray-500">The technical backbone of everything we build.</p>
+            </div>
+
+            <!-- The Pill UI from the image -->
+            <div class="flex flex-wrap justify-center max-w-4xl mx-auto mb-20">
+                <div class="skill-pill">Web Development</div>
+                <div class="skill-pill">Consultation</div>
+                <div class="skill-pill">Web Design</div>
+                <div class="skill-pill">HTML</div>
+                <div class="skill-pill">CSS</div>
+                <div class="skill-pill">JavaScript</div>
+                <div class="skill-pill">WordPress</div>
+                <div class="skill-pill">Bug Fix</div>
+                <div class="skill-pill">Migration</div>
+                <div class="skill-pill">SEO Plugin</div>
+                <div class="skill-pill">SEO Setup</div>
+                <div class="skill-pill">System Config</div>
+            </div>
+
+            <!-- Detailed Service Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i data-lucide="layout"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Development & Design</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        End-to-end web creation using HTML, CSS, and JavaScript. We specialize in modern Web Design and WordPress ecosystems.
+                    </p>
+                </div>
+                
+                <div class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        <i data-lucide="settings"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">System & Migration</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Expert handling of System Config and data Migration. We ensure zero downtime during platform transitions.
+                    </p>
+                </div>
+
+                <div class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">SEO & Support</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Comprehensive SEO Setup and Plugin management. Plus, dedicated Bug Fix support to keep your site running smoothly.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-4 bg-gray-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Service Packages</h2>
+                <p class="text-gray-500">Choose the level of support that fits your goals.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Starter Package -->
+                <div class="pricing-card bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-gray-400 mb-2">Starter</h3>
+                        <div class="text-4xl font-bold">£799</div>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">Template-Based Design</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">3 Website Revisions</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="w-full py-3 border border-black text-center rounded-full font-bold hover:bg-black hover:text-white transition">Get Started</a>
+                </div>
+
+                <!-- Professional Package -->
+                <div class="pricing-card bg-black p-8 rounded-3xl shadow-2xl flex flex-col relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Most Popular</div>
+                    <div class="mb-8 text-white">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-gray-400 mb-2">Professional</h3>
+                        <div class="text-4xl font-bold">£899</div>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-grow text-white">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-blue-400 w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span>Custom Build</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-blue-400 w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span>Security Integrated</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-blue-400 w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span>6 Website Revisions</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-blue-400 w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span>Free Consultation</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="w-full py-3 bg-white text-black text-center rounded-full font-bold hover:bg-gray-200 transition">Get Started</a>
+                </div>
+
+                <!-- Pro Package -->
+                <div class="pricing-card bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-gray-400 mb-2">Pro</h3>
+                        <div class="text-4xl font-bold">£999</div>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-grow">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600 font-semibold">All "Professional" Features</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">SEO & Optimization</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">Site Analytics Setup</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">Expert Guidance</span>
+                        </li>
+                    </ul>
+                    <a href="#contact" class="w-full py-3 border border-black text-center rounded-full font-bold hover:bg-black hover:text-white transition">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats/Trust Section -->
+    <section class="py-20 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-4xl font-bold mb-2">500+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-widest">Bugs Fixed</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">120+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-widest">Migrations</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">98%</div>
+                <div class="text-gray-400 text-sm uppercase tracking-widest">SEO Score</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">15+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-widest">Consultants</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-4 bg-white">
+        <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
+            <div class="p-8 md:p-12">
+                <h2 class="text-3xl font-bold mb-2">Start a Project</h2>
+                <p class="text-gray-500 mb-8">Need a consultation or a bug fix? Drop us a line below.</p>
+                
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Your Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Email Address</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition" placeholder="john@company.com" required>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Select Package</label>
+                        <select class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition appearance-none bg-white">
+                            <option>Starter Package (£799)</option>
+                            <option selected>Professional Package (£899)</option>
+                            <option>Pro Package (£999)</option>
+                            <option>Custom Request</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Message</label>
+                        <textarea class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition h-32" placeholder="Tell us about your requirements..." required></textarea>
+                    </div>
+                    <button type="submit" class="w-full py-4 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition shadow-lg">Send Message</button>
+                </form>
+                <div id="form-response" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-xl text-center font-medium">
+                    Thank you! We'll get back to you shortly.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-black rounded flex items-center justify-center">
+                    <i data-lucide="code-2" class="text-white w-4 h-4"></i>
+                </div>
+                <span class="font-bold tracking-tight">DEVSOURCE</span>
+            </div>
+            <div class="text-gray-400 text-sm">
+                &copy; 2026 DevSource Solutions. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-black transition"><i data-lucide="github"></i></a>
+                <a href="#" class="text-gray-400 hover:text-black transition"><i data-lucide="twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-black transition"><i data-lucide="linkedin"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle
+        const menuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Form Submission Mockup
+        const contactForm = document.getElementById('contact-form');
+        const formResponse = document.getElementById('form-response');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            contactForm.classList.add('opacity-50', 'pointer-events-none');
+            
+            // Simulate API call
+            setTimeout(() => {
+                contactForm.reset();
+                contactForm.classList.remove('opacity-50', 'pointer-events-none');
+                formResponse.classList.remove('hidden');
+                setTimeout(() => formResponse.classList.add('hidden'), 5000);
+            }, 1000);
+        });
+
+        // Smooth scrolling for links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 64,
+                        behavior: 'smooth'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
