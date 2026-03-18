@@ -38,40 +38,9 @@
         .pricing-card:hover {
             transform: translateY(-8px);
         }
-        .modal-enter {
-            animation: modalFadeIn 0.3s ease-out forwards;
-        }
-        @keyframes modalFadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
-        }
-        /* Custom Notification Toast */
-        #toast {
-            visibility: hidden;
-            min-width: 250px;
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            border-radius: 12px;
-            padding: 16px;
-            position: fixed;
-            z-index: 100;
-            left: 50%;
-            bottom: 30px;
-            transform: translateX(-50%);
-        }
-        #toast.show {
-            visibility: visible;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
-        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
-        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
     </style>
 </head>
 <body class="bg-white text-gray-900">
-
-    <!-- Toast Notification -->
-    <div id="toast">Message copied to clipboard!</div>
 
     <!-- Navigation -->
     <nav class="fixed w-full z-50 bg-white/80 backdrop-blur-md border-b border-gray-100">
@@ -94,6 +63,7 @@
                 </button>
             </div>
         </div>
+        <!-- Mobile Menu -->
         <div id="mobile-menu" class="hidden md:hidden bg-white border-b border-gray-100 px-4 py-4 space-y-4">
             <a href="#home" class="block font-medium">Home</a>
             <a href="#services" class="block font-medium">Services</a>
@@ -120,8 +90,12 @@
 
     <!-- Services / Skills Section -->
     <section id="services" class="py-24 px-4 bg-white">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-3xl font-bold mb-12">Core Services & Expertise</h2>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold mb-4">Core Services & Expertise</h2>
+                <p class="text-gray-500">The technical backbone of everything we build.</p>
+            </div>
+
             <div class="flex flex-wrap justify-center max-w-4xl mx-auto mb-20">
                 <div class="skill-pill">Web Development</div>
                 <div class="skill-pill">Consultation</div>
@@ -136,6 +110,38 @@
                 <div class="skill-pill">SEO Setup</div>
                 <div class="skill-pill">System Config</div>
             </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-blue-600 group-hover:text-white transition-colors">
+                        <i data-lucide="layout"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">Development & Design</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        End-to-end web creation using HTML, CSS, and JavaScript. We specialize in modern Web Design and WordPress ecosystems.
+                    </p>
+                </div>
+                
+                <div class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-green-50 text-green-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-green-600 group-hover:text-white transition-colors">
+                        <i data-lucide="settings"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">System & Migration</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Expert handling of System Config and data Migration. We ensure zero downtime during platform transitions.
+                    </p>
+                </div>
+
+                <div class="p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-all duration-300 group">
+                    <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-purple-600 group-hover:text-white transition-colors">
+                        <i data-lucide="trending-up"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3">SEO & Support</h3>
+                    <p class="text-gray-600 leading-relaxed">
+                        Comprehensive SEO Setup and Plugin management. Plus, dedicated Bug Fix support to keep your site running smoothly.
+                    </p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -146,36 +152,78 @@
                 <h2 class="text-3xl font-bold mb-4">Service Packages</h2>
                 <p class="text-gray-500">Choose the level of support that fits your goals.</p>
             </div>
+
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Starter -->
+                <!-- Starter Package -->
                 <div class="pricing-card bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-400 mb-2 uppercase">Starter</h3>
-                    <div class="text-4xl font-bold mb-8">£799</div>
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-gray-400 mb-2">Starter</h3>
+                        <div class="text-4xl font-bold">£799</div>
+                    </div>
                     <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i> Template-Based Design</li>
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i> 3 Website Revisions</li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">Template-Based Design</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">3 Website Revisions</span>
+                        </li>
                     </ul>
                     <a href="#contact" class="w-full py-3 border border-black text-center rounded-full font-bold hover:bg-black hover:text-white transition">Get Started</a>
                 </div>
-                <!-- Professional -->
-                <div class="pricing-card bg-black p-8 rounded-3xl shadow-2xl flex flex-col text-white">
-                    <h3 class="text-lg font-bold text-gray-400 mb-2 uppercase">Professional</h3>
-                    <div class="text-4xl font-bold mb-8">£899</div>
-                    <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-center gap-3 text-blue-400"><i data-lucide="check" class="w-5 h-5"></i> Custom Build</li>
-                        <li class="flex items-center gap-3 text-blue-400"><i data-lucide="check" class="w-5 h-5"></i> Security Integrated</li>
-                        <li class="flex items-center gap-3 text-blue-400"><i data-lucide="check" class="w-5 h-5"></i> 6 Website Revisions</li>
+
+                <!-- Professional Package -->
+                <div class="pricing-card bg-black p-8 rounded-3xl shadow-2xl flex flex-col relative overflow-hidden">
+                    <div class="absolute top-4 right-4 bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-tighter">Most Popular</div>
+                    <div class="mb-8 text-white">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-gray-400 mb-2">Professional</h3>
+                        <div class="text-4xl font-bold">£899</div>
+                    </div>
+                    <ul class="space-y-4 mb-8 flex-grow text-white">
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-blue-400 w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span>Custom Build</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-blue-400 w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span>Security Integrated</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-blue-400 w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span>6 Website Revisions</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-blue-400 w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span>Free Consultation</span>
+                        </li>
                     </ul>
                     <a href="#contact" class="w-full py-3 bg-white text-black text-center rounded-full font-bold hover:bg-gray-200 transition">Get Started</a>
                 </div>
-                <!-- Pro -->
+
+                <!-- Pro Package -->
                 <div class="pricing-card bg-white p-8 rounded-3xl border border-gray-200 shadow-sm flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-400 mb-2 uppercase">Pro</h3>
-                    <div class="text-4xl font-bold mb-8">£999</div>
+                    <div class="mb-8">
+                        <h3 class="text-lg font-bold uppercase tracking-widest text-gray-400 mb-2">Pro</h3>
+                        <div class="text-4xl font-bold">£999</div>
+                    </div>
                     <ul class="space-y-4 mb-8 flex-grow">
-                        <li class="flex items-center gap-3 font-semibold"><i data-lucide="check" class="w-5 h-5"></i> Professional Features</li>
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i> SEO & Optimization</li>
-                        <li class="flex items-center gap-3"><i data-lucide="check" class="w-5 h-5"></i> Site Analytics</li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600 font-semibold">All "Professional" Features</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">SEO & Optimization</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">Site Analytics Setup</span>
+                        </li>
+                        <li class="flex items-start gap-3">
+                            <i data-lucide="check-circle-2" class="text-black w-5 h-5 shrink-0 mt-0.5"></i>
+                            <span class="text-gray-600">Expert Guidance</span>
+                        </li>
                     </ul>
                     <a href="#contact" class="w-full py-3 border border-black text-center rounded-full font-bold hover:bg-black hover:text-white transition">Get Started</a>
                 </div>
@@ -183,144 +231,158 @@
         </div>
     </section>
 
+    <!-- Stats/Trust Section -->
+    <section class="py-20 bg-black text-white">
+        <div class="max-w-7xl mx-auto px-4 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div>
+                <div class="text-4xl font-bold mb-2">500+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-widest">Bugs Fixed</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">120+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-widest">Migrations</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">98%</div>
+                <div class="text-gray-400 text-sm uppercase tracking-widest">SEO Score</div>
+            </div>
+            <div>
+                <div class="text-4xl font-bold mb-2">15+</div>
+                <div class="text-gray-400 text-sm uppercase tracking-widest">Consultants</div>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Section -->
-    <section id="contact" class="py-24 px-4 bg-white relative">
+    <section id="contact" class="py-24 px-4 bg-white">
         <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="p-8 md:p-12">
-                <h2 class="text-3xl font-bold mb-2 text-center">Start a Project</h2>
-                <p class="text-gray-500 mb-8 text-center">Fill out the form to generate your inquiry email.</p>
+                <h2 class="text-3xl font-bold mb-2">Start a Project</h2>
+                <p class="text-gray-500 mb-8">Need a consultation or a bug fix? Drop us a line below.</p>
                 
-                <form id="contact-form" class="space-y-6">
+                <!-- UPDATED WITH YOUR FORMSPREE ENDPOINT -->
+                <form id="contact-form" action="https://formspree.io/f/mlgpoqqw" method="POST" class="space-y-6">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <input type="text" id="form-name" class="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none" placeholder="Your Name" required>
-                        <input type="email" id="form-email" class="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none" placeholder="Your Email" required>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Your Name</label>
+                            <input type="text" name="name" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition" placeholder="John Doe" required>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-semibold mb-2">Email Address</label>
+                            <input type="email" name="email" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition" placeholder="john@company.com" required>
+                        </div>
                     </div>
-                    <select id="form-package" class="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none bg-white">
-                        <option>Starter Package (£799)</option>
-                        <option selected>Professional Package (£899)</option>
-                        <option>Pro Package (£999)</option>
-                    </select>
-                    <textarea id="form-message" class="w-full px-4 py-3 border border-gray-200 rounded-xl outline-none h-32" placeholder="Tell us about your requirements..." required></textarea>
-                    <button type="submit" class="w-full py-4 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition shadow-lg">Next: Send Details</button>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Select Package</label>
+                        <select name="package" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition appearance-none bg-white">
+                            <option>Starter Package (£799)</option>
+                            <option selected>Professional Package (£899)</option>
+                            <option>Pro Package (£999)</option>
+                            <option>Custom Request</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold mb-2">Message</label>
+                        <textarea name="message" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition h-32" placeholder="Tell us about your requirements..." required></textarea>
+                    </div>
+
+                    <input type="text" name="_gotcha" style="display:none">
+
+                    <button type="submit" id="submit-btn" class="w-full py-4 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition shadow-lg">Send Message</button>
                 </form>
-
-                <!-- Email Choice Overlay -->
-                <div id="email-choice-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-                    <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl modal-enter">
-                        <div class="flex justify-between items-center mb-6">
-                            <h3 class="text-xl font-bold">Choose your method</h3>
-                            <button id="close-modal"><i data-lucide="x"></i></button>
-                        </div>
-                        
-                        <div class="space-y-3">
-                            <button id="btn-mailto" class="w-full flex items-center gap-4 p-4 border border-gray-100 rounded-2xl hover:bg-gray-50 text-left">
-                                <div class="w-10 h-10 bg-black text-white rounded-xl flex items-center justify-center"><i data-lucide="mail"></i></div>
-                                <div class="flex-grow font-semibold">Native Email App</div>
-                            </button>
-
-                            <button id="btn-gmail" class="w-full flex items-center gap-4 p-4 border border-gray-100 rounded-2xl hover:bg-gray-50 text-left">
-                                <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center font-bold">M</div>
-                                <div class="flex-grow font-semibold">Gmail (Web)</div>
-                            </button>
-
-                            <button id="btn-copy" class="w-full flex items-center gap-4 p-4 border border-blue-100 bg-blue-50/30 rounded-2xl hover:bg-blue-50 text-left">
-                                <div class="w-10 h-10 bg-blue-600 text-white rounded-xl flex items-center justify-center"><i data-lucide="copy"></i></div>
-                                <div class="flex-grow">
-                                    <div class="font-bold text-blue-600 uppercase text-[10px]">Failsafe Fallback</div>
-                                    <div class="font-semibold">Copy Draft Details</div>
-                                </div>
-                            </button>
-                        </div>
-                    </div>
+                
+                <div id="form-response" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-xl text-center font-medium">
+                    Thank you! Your message has been sent successfully.
+                </div>
+                <div id="form-error" class="hidden mt-6 p-4 bg-red-50 text-red-700 rounded-xl text-center font-medium">
+                    Oops! There was a problem sending your message.
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="py-12 border-t border-gray-100 text-center">
-        <span class="font-bold tracking-tight">DEVSOURCE</span>
-        <div class="text-gray-400 text-sm mt-4">&copy; 2026 DevSource Solutions. All rights reserved.</div>
+    <footer class="py-12 border-t border-gray-100">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-black rounded flex items-center justify-center">
+                    <i data-lucide="code-2" class="text-white w-4 h-4"></i>
+                </div>
+                <span class="font-bold tracking-tight">DEVSOURCE</span>
+            </div>
+            <div class="text-gray-400 text-sm">
+                &copy; 2026 DevSource Solutions. All rights reserved.
+            </div>
+            <div class="flex gap-6">
+                <a href="#" class="text-gray-400 hover:text-black transition"><i data-lucide="github"></i></a>
+                <a href="#" class="text-gray-400 hover:text-black transition"><i data-lucide="twitter"></i></a>
+                <a href="#" class="text-gray-400 hover:text-black transition"><i data-lucide="linkedin"></i></a>
+            </div>
+        </div>
     </footer>
 
     <script>
         lucide.createIcons();
 
-        // Mobile Menu
         const menuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
-        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
 
-        // Form Logic
         const contactForm = document.getElementById('contact-form');
-        const emailModal = document.getElementById('email-choice-modal');
-        const closeModal = document.getElementById('close-modal');
-        let currentEmailData = {};
+        const formResponse = document.getElementById('form-response');
+        const formError = document.getElementById('form-error');
+        const submitBtn = document.getElementById('submit-btn');
 
-        contactForm.addEventListener('submit', (e) => {
+        contactForm.addEventListener('submit', async (e) => {
             e.preventDefault();
-            currentEmailData = {
-                name: document.getElementById('form-name').value,
-                email: document.getElementById('form-email').value,
-                package: document.getElementById('form-package').value,
-                message: document.getElementById('form-message').value,
-                recipient: "ferrer.jillian@icloud.com"
-            };
-            emailModal.classList.remove('hidden');
-        });
-
-        closeModal.addEventListener('click', () => emailModal.classList.add('hidden'));
-
-        function getEmailBody() {
-            return `Hello Jillian,\n\nName: ${currentEmailData.name}\nEmail: ${currentEmailData.email}\nPackage: ${currentEmailData.package}\n\nMessage:\n${currentEmailData.message}\n\nSent via DevSource`;
-        }
-
-        function showToast() {
-            const toast = document.getElementById("toast");
-            toast.className = "show";
-            setTimeout(() => { toast.className = toast.className.replace("show", ""); }, 3000);
-        }
-
-        // 1. Native App Link (Standard for Mobile)
-        document.getElementById('btn-mailto').addEventListener('click', () => {
-            const subject = encodeURIComponent(`Inquiry: ${currentEmailData.package}`);
-            const body = encodeURIComponent(getEmailBody().replace(/\n/g, '\r\n'));
-            window.location.href = `mailto:${currentEmailData.recipient}?subject=${subject}&body=${body}`;
-            emailModal.classList.add('hidden');
-        });
-
-        // 2. Gmail Web Link
-        document.getElementById('btn-gmail').addEventListener('click', () => {
-            const subject = encodeURIComponent(`Inquiry: ${currentEmailData.package}`);
-            const body = encodeURIComponent(getEmailBody());
-            // Updated Gmail URL for better mobile compose trigger
-            window.open(`https://mail.google.com/mail/u/0/?view=cm&fs=1&to=${currentEmailData.recipient}&su=${subject}&body=${body}`, '_blank');
-            emailModal.classList.add('hidden');
-        });
-
-        // 3. Copy Fallback (Guaranteed to work on mobile)
-        document.getElementById('btn-copy').addEventListener('click', () => {
-            const textToCopy = `To: ${currentEmailData.recipient}\nSubject: Inquiry: ${currentEmailData.package}\n\n${getEmailBody()}`;
             
-            // Reliable copy method for iframes/mobile
-            const textArea = document.createElement("textarea");
-            textArea.value = textToCopy;
-            document.body.appendChild(textArea);
-            textArea.select();
-            document.execCommand('copy');
-            document.body.removeChild(textArea);
-            
-            showToast();
-            emailModal.classList.add('hidden');
+            submitBtn.disabled = true;
+            submitBtn.innerText = 'Sending...';
+            contactForm.classList.add('opacity-50', 'pointer-events-none');
+            formError.classList.add('hidden');
+
+            const data = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    contactForm.reset();
+                    contactForm.classList.add('hidden');
+                    formResponse.classList.remove('hidden');
+                } else {
+                    const result = await response.json();
+                    throw new Error(result.error || 'Submission failed');
+                }
+            } catch (error) {
+                formError.classList.remove('hidden');
+                formError.innerText = "Error: " + (error.message || "Submission failed.");
+                contactForm.classList.remove('opacity-50', 'pointer-events-none');
+                submitBtn.disabled = false;
+                submitBtn.innerText = 'Send Message';
+            }
         });
 
-        // Smooth Scroll
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const target = document.querySelector(targetId);
                 if (target) {
-                    window.scrollTo({ top: target.offsetTop - 64, behavior: 'smooth' });
+                    window.scrollTo({
+                        top: target.offsetTop - 64,
+                        behavior: 'smooth'
+                    });
                     mobileMenu.classList.add('hidden');
                 }
             });
