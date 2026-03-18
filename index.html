@@ -38,6 +38,13 @@
         .pricing-card:hover {
             transform: translateY(-8px);
         }
+        .modal-enter {
+            animation: modalFadeIn 0.3s ease-out forwards;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
+        }
     </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -256,7 +263,7 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-24 px-4 bg-white">
+    <section id="contact" class="py-24 px-4 bg-white relative">
         <div class="max-w-3xl mx-auto bg-white rounded-3xl shadow-sm border border-gray-100 overflow-hidden">
             <div class="p-8 md:p-12">
                 <h2 class="text-3xl font-bold mb-2">Start a Project</h2>
@@ -286,10 +293,52 @@
                         <label class="block text-sm font-semibold mb-2">Message</label>
                         <textarea id="form-message" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition h-32" placeholder="Tell us about your requirements..." required></textarea>
                     </div>
-                    <button type="submit" class="w-full py-4 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition shadow-lg">Send Message</button>
+                    <button type="submit" class="w-full py-4 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition shadow-lg">Next: Choose Email Client</button>
                 </form>
-                <div id="form-response" class="hidden mt-6 p-4 bg-blue-50 text-blue-700 rounded-xl text-center font-medium">
-                    Please select your email app to send the message...
+
+                <!-- Email Choice Overlay -->
+                <div id="email-choice-modal" class="hidden fixed inset-0 z-[60] flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
+                    <div class="bg-white w-full max-w-md rounded-3xl p-8 shadow-2xl modal-enter">
+                        <div class="flex justify-between items-center mb-6">
+                            <h3 class="text-xl font-bold">Choose your service</h3>
+                            <button id="close-modal" class="text-gray-400 hover:text-black transition">
+                                <i data-lucide="x"></i>
+                            </button>
+                        </div>
+                        <p class="text-gray-500 mb-8 text-sm">Please select how you would like to send your project details:</p>
+                        
+                        <div class="space-y-3">
+                            <button id="btn-mailto" class="w-full flex items-center justify-between p-4 border border-gray-100 rounded-2xl hover:bg-gray-50 transition group">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-black text-white rounded-xl flex items-center justify-center">
+                                        <i data-lucide="mail"></i>
+                                    </div>
+                                    <span class="font-semibold">Default Email App</span>
+                                </div>
+                                <i data-lucide="chevron-right" class="text-gray-300 group-hover:text-black"></i>
+                            </button>
+
+                            <button id="btn-gmail" class="w-full flex items-center justify-between p-4 border border-gray-100 rounded-2xl hover:bg-gray-50 transition group">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-red-50 text-red-600 rounded-xl flex items-center justify-center font-bold text-xs uppercase">
+                                        M
+                                    </div>
+                                    <span class="font-semibold">Gmail (Web)</span>
+                                </div>
+                                <i data-lucide="chevron-right" class="text-gray-300 group-hover:text-black"></i>
+                            </button>
+
+                            <button id="btn-outlook" class="w-full flex items-center justify-between p-4 border border-gray-100 rounded-2xl hover:bg-gray-50 transition group">
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center">
+                                        <i data-lucide="layout-template"></i>
+                                    </div>
+                                    <span class="font-semibold">Outlook / Hotmail</span>
+                                </div>
+                                <i data-lucide="chevron-right" class="text-gray-300 group-hover:text-black"></i>
+                            </button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -327,48 +376,64 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Contact Form Logic using mailto:
+        // Form Logic
         const contactForm = document.getElementById('contact-form');
-        const formResponse = document.getElementById('form-response');
+        const emailModal = document.getElementById('email-choice-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        let currentEmailData = {};
 
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('form-name').value;
-            const email = document.getElementById('form-email').value;
-            const packageSelected = document.getElementById('form-package').value;
-            const message = document.getElementById('form-message').value;
+            // Gather details
+            currentEmailData = {
+                name: document.getElementById('form-name').value,
+                email: document.getElementById('form-email').value,
+                package: document.getElementById('form-package').value,
+                message: document.getElementById('form-message').value,
+                recipient: "ferrer.jillian@icloud.com"
+            };
             
-            // Construct the email components
-            const recipient = "ferrer.jillian@icloud.com";
-            const subject = encodeURIComponent(`Project Inquiry: ${packageSelected} from ${name}`);
+            // Show choices
+            emailModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => emailModal.classList.add('hidden'));
+
+        // Handle Choice Buttons
+        document.getElementById('btn-mailto').addEventListener('click', () => {
+            const subject = encodeURIComponent(`Project Inquiry: ${currentEmailData.package} from ${currentEmailData.name}`);
             const body = encodeURIComponent(
                 `Hello Jillian,\n\n` +
                 `You have a new project inquiry from your website.\n\n` +
-                `Name: ${name}\n` +
-                `Email: ${email}\n` +
-                `Package Interest: ${packageSelected}\n\n` +
-                `Message Details:\n${message}\n\n` +
+                `Name: ${currentEmailData.name}\n` +
+                `Email: ${currentEmailData.email}\n` +
+                `Package: ${currentEmailData.package}\n\n` +
+                `Message:\n${currentEmailData.message}\n\n` +
                 `-----------------------------\n` +
-                `Sent via DevSource Web Portfolio`
+                `Sent via DevSource Website.`
             );
-            
-            // Show user feedback
-            formResponse.classList.remove('hidden');
-            
-            // We use a temporary anchor element to force the browser to trigger the mailto handler.
-            // This is more robust than window.location in many modern browser security contexts.
-            const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
-            const tempLink = document.createElement('a');
-            tempLink.href = mailtoLink;
-            document.body.appendChild(tempLink);
-            tempLink.click();
-            document.body.removeChild(tempLink);
-            
-            // Reset form UI after a delay
-            setTimeout(() => {
-                formResponse.classList.add('hidden');
-            }, 5000);
+            window.location.href = `mailto:${currentEmailData.recipient}?subject=${subject}&body=${body}`;
+            emailModal.classList.add('hidden');
+        });
+
+        document.getElementById('btn-gmail').addEventListener('click', () => {
+            const subject = encodeURIComponent(`Project Inquiry: ${currentEmailData.package} from ${currentEmailData.name}`);
+            const body = encodeURIComponent(
+                `Hello Jillian,\n\nName: ${currentEmailData.name}\nEmail: ${currentEmailData.email}\nPackage: ${currentEmailData.package}\n\nMessage:\n${currentEmailData.message}`
+            );
+            window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${currentEmailData.recipient}&su=${subject}&body=${body}`, '_blank');
+            emailModal.classList.add('hidden');
+        });
+
+        document.getElementById('btn-outlook').addEventListener('click', () => {
+            const subject = encodeURIComponent(`Project Inquiry: ${currentEmailData.package} from ${currentEmailData.name}`);
+            const body = encodeURIComponent(
+                `Hello Jillian,\n\nName: ${currentEmailData.name}\nEmail: ${currentEmailData.email}\nPackage: ${currentEmailData.package}\n\nMessage:\n${currentEmailData.message}`
+            );
+            window.open(`https://outlook.office.com/mail/deeplink/compose?to=${currentEmailData.recipient}&subject=${subject}&body=${body}`, '_blank');
+            emailModal.classList.add('hidden');
         });
 
         // Smooth scrolling for links
@@ -381,7 +446,6 @@
                         top: target.offsetTop - 64,
                         behavior: 'smooth'
                     });
-                    // Close mobile menu if open
                     mobileMenu.classList.add('hidden');
                 }
             });
