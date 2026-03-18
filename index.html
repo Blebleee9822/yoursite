@@ -266,16 +266,16 @@
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label class="block text-sm font-semibold mb-2">Your Name</label>
-                            <input type="text" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition" placeholder="John Doe" required>
+                            <input type="text" id="form-name" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition" placeholder="John Doe" required>
                         </div>
                         <div>
                             <label class="block text-sm font-semibold mb-2">Email Address</label>
-                            <input type="email" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition" placeholder="john@company.com" required>
+                            <input type="email" id="form-email" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition" placeholder="john@company.com" required>
                         </div>
                     </div>
                     <div>
                         <label class="block text-sm font-semibold mb-2">Select Package</label>
-                        <select class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition appearance-none bg-white">
+                        <select id="form-package" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition appearance-none bg-white">
                             <option>Starter Package (£799)</option>
                             <option selected>Professional Package (£899)</option>
                             <option>Pro Package (£999)</option>
@@ -284,12 +284,12 @@
                     </div>
                     <div>
                         <label class="block text-sm font-semibold mb-2">Message</label>
-                        <textarea class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition h-32" placeholder="Tell us about your requirements..." required></textarea>
+                        <textarea id="form-message" class="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-black outline-none transition h-32" placeholder="Tell us about your requirements..." required></textarea>
                     </div>
                     <button type="submit" class="w-full py-4 bg-black text-white rounded-xl font-bold hover:bg-gray-800 transition shadow-lg">Send Message</button>
                 </form>
-                <div id="form-response" class="hidden mt-6 p-4 bg-green-50 text-green-700 rounded-xl text-center font-medium">
-                    Thank you! We'll get back to you shortly.
+                <div id="form-response" class="hidden mt-6 p-4 bg-blue-50 text-blue-700 rounded-xl text-center font-medium">
+                    Please select your email app to send the message...
                 </div>
             </div>
         </div>
@@ -327,21 +327,48 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Form Submission Mockup
+        // Contact Form Logic using mailto:
         const contactForm = document.getElementById('contact-form');
         const formResponse = document.getElementById('form-response');
 
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            contactForm.classList.add('opacity-50', 'pointer-events-none');
             
-            // Simulate API call
+            const name = document.getElementById('form-name').value;
+            const email = document.getElementById('form-email').value;
+            const packageSelected = document.getElementById('form-package').value;
+            const message = document.getElementById('form-message').value;
+            
+            // Construct the email components
+            const recipient = "ferrer.jillian@icloud.com";
+            const subject = encodeURIComponent(`Project Inquiry: ${packageSelected} from ${name}`);
+            const body = encodeURIComponent(
+                `Hello Jillian,\n\n` +
+                `You have a new project inquiry from your website.\n\n` +
+                `Name: ${name}\n` +
+                `Email: ${email}\n` +
+                `Package Interest: ${packageSelected}\n\n` +
+                `Message Details:\n${message}\n\n` +
+                `-----------------------------\n` +
+                `Sent via DevSource Web Portfolio`
+            );
+            
+            // Show user feedback
+            formResponse.classList.remove('hidden');
+            
+            // We use a temporary anchor element to force the browser to trigger the mailto handler.
+            // This is more robust than window.location in many modern browser security contexts.
+            const mailtoLink = `mailto:${recipient}?subject=${subject}&body=${body}`;
+            const tempLink = document.createElement('a');
+            tempLink.href = mailtoLink;
+            document.body.appendChild(tempLink);
+            tempLink.click();
+            document.body.removeChild(tempLink);
+            
+            // Reset form UI after a delay
             setTimeout(() => {
-                contactForm.reset();
-                contactForm.classList.remove('opacity-50', 'pointer-events-none');
-                formResponse.classList.remove('hidden');
-                setTimeout(() => formResponse.classList.add('hidden'), 5000);
-            }, 1000);
+                formResponse.classList.add('hidden');
+            }, 5000);
         });
 
         // Smooth scrolling for links
